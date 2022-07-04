@@ -33,10 +33,10 @@ public class Bounds : MonoBehaviour
             viewPos.x = -1.0f * screenBounds.x + objectWidth;
         }
 
-        if (viewPos.y + objectHeight >= screenBounds.y)
-        {
-            viewPos.y = screenBounds.y - objectHeight;
-        }
+        //if (viewPos.y + objectHeight >= screenBounds.y)
+        //{
+        //    viewPos.y = screenBounds.y - objectHeight;
+        //}
 
         if (viewPos.y - objectHeight <= -1.0f * screenBounds.y)
         {

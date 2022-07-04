@@ -7,15 +7,22 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private float smoothFactor = 6.0f;
+
+    [SerializeField]
+    private Transform deathBlock;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.position = new Vector3(player.transform.position.x,player.transform.position.y,transform.position.z);
+        if(player.transform.position.y > this.transform.position.y)
+        {
+            transform.position = Vector3.Lerp(transform.position,new Vector3(transform.position.x,player.transform.position.y,transform.position.z),smoothFactor * Time.fixedDeltaTime);
+
+            // Updating the position of the death block
+            Vector3 screenDimensions = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,0,0));
+            deathBlock.position = new Vector3(deathBlock.position.x,screenDimensions.y,deathBlock.position.z);
+        }
     }
 }
